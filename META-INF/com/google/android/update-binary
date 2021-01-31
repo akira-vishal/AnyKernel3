@@ -45,9 +45,15 @@ insert_line() {
   fi;
 }
 
-ui_print "×××××××××××××××××××××××××××××××××××××××××××××××"
-ui_print "×          RAD KERNEL by @theradcolor         ×"
-ui_print "×××××××××××××××××××××××××××××××××××××××××××××××"
+ui_print "××××××××××××××××××××××××××××××××××××××××××××××"
+ui_print "             _  _______  ____  ______         "
+ui_print "            / |/ / __/ |/_/ / / / __/           "
+ui_print "           /    / _/_>  </ /_/ /\ \            "
+ui_print "          /_/|_/___/_/|_|\____/___/            "
+ui_print "                                                 "
+ui_print "××××××××××××××××××××××××××××××××××××××××××××××"
+ui_print "×       NEXUS KERNEL by @akira-vishal        ×"
+ui_print "××××××××××××××××××××××××××××××××××××××××××××××"
 ui_print " "
 ui_print "× Initializing parameters and properties"
 show_progress() { echo "progress $1 $2" >> $OUTFD; }
@@ -449,9 +455,36 @@ fi;
 
 # Copy init scripts
 $BB mount -o rw,remount -t auto /vendor 2>/dev/null;
-insert_line /vendor/etc/init/hw/init.qcom.rc "init.rad.rc" after "import /vendor/etc/init/hw/init.qcom.usb.rc" "import /vendor/etc/init/hw/init.rad.rc";
-$BB cp -f $AKHOME/init/init.rad.rc /vendor/etc/init/hw/init.rad.rc;
-$BB chmod 644 /vendor/etc/init/hw/init.rad.rc
+ui_print "× Installing Init Scripts";
+$BB rm -rf /vendor/etc/init/hw/init.rad.rc;
+insert_line /vendor/etc/init/hw/init.qcom.rc "init.neXus.rc" after "import /vendor/etc/init/hw/init.qcom.usb.rc" "import /vendor/etc/init/hw/init.neXus.rc";
+$BB cp -f $AKHOME/tools/init/init.neXus.rc /vendor/etc/init/hw/init.neXus.rc;
+$BB chmod 644 /vendor/etc/init/hw/init.nexus.rc
+
+# Copy thermals
+$BB mount -o rw,remount -t auto /vendor 2>/dev/null;
+ui_print "× Installing Thermals Engine";
+$BB rm -rf /vendor/etc/thermal-engin*;
+$BB cp -f $AKHOME/tools/thermal/thermal-engine.conf /vendor/etc/thermal-engine.conf;
+$BB cp -f $AKHOME/tools/thermal/thermal-engine-camera.conf /vendor/etc/thermal-engine-camera.conf;
+$BB cp -f $AKHOME/tools/thermal/thermal-engine-map.conf /vendor/etc/thermal-engine-map.conf;
+$BB cp -f $AKHOME/tools/thermal/thermal-engine-normal.conf /vendor/etc/thermal-engine-normal.conf;
+$BB chmod 644 /vendor/etc/thermal-engine.conf
+$BB chmod 644 /vendor/etc/thermal-engine-camera.conf
+$BB chmod 644 /vendor/etc/thermal-engine-map.conf
+$BB chmod 644 /vendor/etc/thermal-engine-normal.conf
+
+# Copy modules
+if [ -d /data/adb/magisk ]; then
+    ui_print "× Installing Magisk Module";
+    $BB mount -o rw,remount -t auto /data 2>/dev/null;
+    Module=/data/adb/modules/Nexus
+    $BB rm -rf $Module
+    mkdir -p $Module
+    cp -f $AKHOME/tools/module/Nexus/* $Module;
+    chmod 755 $Module/service.sh
+    chmod 755 $Module/post-fs-data.sh
+fi;
 
 do_modules;
 
@@ -463,7 +496,7 @@ if [ "$(file_getprop anykernel.sh do.cleanup)" == 1 ]; then
 fi;
 
 ui_print "× Successfully flashed kernel!";
-ui_print "× Thank you for using RAD KERNEL!";
+ui_print "× Thank you for using NEXUS KERNEL!";
 ui_print "× Powered by AnyKernel3 by @osm0sis";
 ui_print " "
 ui_print "×××××××××××××××××××××××××××××××××××××××××××××××"
