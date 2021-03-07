@@ -1,5 +1,9 @@
 #!/system/bin/sh
-# Thanks WeAreRavens
+#========================================
+# akira-vishal@github
+# Thanks @WeAreRavenS
+# Do not remove credit if you're using a part of this mod to your module.
+#========================================
 MODULE=/data/adb/modules
 # Conflict Module Remover
 if [ -e $MODULE/FDE ]; then

@@ -453,37 +453,34 @@ if [ $? != 0 ]; then
   abort;
 fi;
 
-# Copy init scripts
-$BB mount -o rw,remount -t auto /vendor 2>/dev/null;
-ui_print "× Installing Init Scripts";
-$BB rm -rf /vendor/etc/init/hw/init.rad.rc;
-insert_line /vendor/etc/init/hw/init.qcom.rc "init.neXus.rc" after "import /vendor/etc/init/hw/init.qcom.usb.rc" "import /vendor/etc/init/hw/init.neXus.rc";
-$BB cp -f $AKHOME/tools/init/init.neXus.rc /vendor/etc/init/hw/init.neXus.rc;
-$BB chmod 644 /vendor/etc/init/hw/init.nexus.rc
-
-# Copy thermals
-$BB mount -o rw,remount -t auto /vendor 2>/dev/null;
-ui_print "× Installing Thermals Engine";
-$BB rm -rf /vendor/etc/thermal-engin*;
-$BB cp -f $AKHOME/tools/thermal/thermal-engine.conf /vendor/etc/thermal-engine.conf;
-$BB cp -f $AKHOME/tools/thermal/thermal-engine-camera.conf /vendor/etc/thermal-engine-camera.conf;
-$BB cp -f $AKHOME/tools/thermal/thermal-engine-map.conf /vendor/etc/thermal-engine-map.conf;
-$BB cp -f $AKHOME/tools/thermal/thermal-engine-normal.conf /vendor/etc/thermal-engine-normal.conf;
-$BB chmod 644 /vendor/etc/thermal-engine.conf
-$BB chmod 644 /vendor/etc/thermal-engine-camera.conf
-$BB chmod 644 /vendor/etc/thermal-engine-map.conf
-$BB chmod 644 /vendor/etc/thermal-engine-normal.conf
-
 # Copy modules
 if [ -d /data/adb/magisk ]; then
     ui_print "× Installing Magisk Module";
     $BB mount -o rw,remount -t auto /data 2>/dev/null;
-    Module=/data/adb/modules/Nexus
-    $BB rm -rf $Module
-    mkdir -p $Module
-    cp -f $AKHOME/tools/module/Nexus/* $Module;
-    chmod 755 $Module/service.sh
-    chmod 755 $Module/post-fs-data.sh
+    Module=/data/adb/modules
+    $BB rm -rf $Module/nexus_kernel_auto;
+    $BB rm -rf $Module/nexus_kernel_engine;
+    cp -f $AKHOME/tools/magisk/* $Module;
+    chmod 755 $Module/nexus_kernel_auto/service.sh
+    chmod 755 $Module/nexus_kernel_auto/post-fs-data.sh
+    chmod 755 $Module/nexus_kernel_engine/post-fs-data.sh
+else
+    ui_print "× Installing Kernel Mods";
+    $BB mount -o rw,remount -t auto /vendor 2>/dev/null;
+    FILE=/vendor/etc
+    $BB rm -rf $FILE/init/hw/init.neXus.rc;
+    $BB rm -rf $FILE/thermal-engin*;
+    insert_line $FILE/init/hw/init.qcom.rc "init.neXus.rc" after "import /vendor/etc/init/hw/init.qcom.usb.rc" "import /vendor/etc/init/hw/init.neXus.rc";
+    $BB cp -f $AKHOME/tools/recovery/init.neXus.rc $FILE/init/hw/init.nexus.rc;
+    $BB cp -f $AKHOME/tools/recovery/thermal-engine.conf $FILE/thermal-engine.conf;
+    $BB cp -f $AKHOME/tools/recovery/thermal-engine-camera.conf $FILE/thermal-engine-camera.conf;
+    $BB cp -f $AKHOME/tools/recovery/thermal-engine-map.conf $FILE/thermal-engine-map.conf;
+    $BB cp -f $AKHOME/tools/recovery/thermal-engine-normal.conf $FILE/thermal-engine-normal.conf;
+    $BB chmod 644 $FILE/init/hw/init.nexus.rc
+    $BB chmod 644 $FILE/thermal-engine.conf
+    $BB chmod 644 $FILE/thermal-engine-camera.conf
+    $BB chmod 644 $FILE/thermal-engine-map.conf
+    $BB chmod 644 $FILE/thermal-engine-normal.conf
 fi;
 
 do_modules;

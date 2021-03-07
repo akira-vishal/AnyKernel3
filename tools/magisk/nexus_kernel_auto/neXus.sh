@@ -1,19 +1,26 @@
 #!/system/bin/sh
-persona=/sys/devices/system/cpu
-cpu_governors=$persona/cpu0/cpufreq/scaling_available_governors
-cpu_freq=$persona/cpu4/cpufreq/scaling_available_frequencies
-cpu_freq0=$persona/cpu0/cpufreq/scaling_available_frequencies
-cpu_max=$persona/cpu4/cpufreq/cpuinfo_max_freq
-cpu_min=$persona/cpu4/cpufreq/cpuinfo_min_freq
-setmin0=`cat $persona/cpu0/cpufreq/cpuinfo_min_freq`
-setmin4=`cat $persona/cpu4/cpufreq/cpuinfo_min_freq`
-setmax0=`cat $persona/cpu0/cpufreq/cpuinfo_max_freq`
-setmax4=`cat $persona/cpu4/cpufreq/cpuinfo_max_freq`
+#========================================
+# akira-vishal@github
+# by @WeAreRavenS And @Akira_Vishal
+# Do not remove credit if you're using a part of this mod to your module.
+#========================================
+setprop debug.egl.buffcount 4
+echo "0" > /proc/sys/vm/oom_kill_allocating_task
+neXus=/sys/devices/system/cpu
+cpu_governors=$neXus/cpu0/cpufreq/scaling_available_governors
+cpu_freq=$neXus/cpu4/cpufreq/scaling_available_frequencies
+cpu_freq0=$neXus/cpu0/cpufreq/scaling_available_frequencies
+cpu_max=$neXus/cpu4/cpufreq/cpuinfo_max_freq
+cpu_min=$neXus/cpu4/cpufreq/cpuinfo_min_freq
+setmin0=`cat $neXus/cpu0/cpufreq/cpuinfo_min_freq`
+setmin4=`cat $neXus/cpu4/cpufreq/cpuinfo_min_freq`
+setmax0=`cat $neXus/cpu0/cpufreq/cpuinfo_max_freq`
+setmax4=`cat $neXus/cpu4/cpufreq/cpuinfo_max_freq`
 gpumx=/sys/class/kgsl/kgsl-3d0/num_pwrlevels
 io_scheduler=/sys/block/mmcblk0/queue/scheduler
 ext4blocks="/sys/fs/ext4/mmcblk0p*"
 while true; do
- if [ $(top -n 1 -d 1 | head -n 12 | grep -o -e 'deadeffect' -e 'warface' -e 'com.my' -e 'pnixgames' -e '.gamedevltd' -e 'napoleongames' -e 'datealive' -e 'efun' -e 'tapenjoy' -e 'skynet' -e 'ppsspp' -e 'ubisoft' -e 'camouflaj' -e 'zlongame' -e 'archosaur' -e 'sea' -e 'YoStarEN' -e 'roblox' -e 'com.pixel.gun3d' -e 'cputhrottlingtest' -e 'innersloth' -e 'damonplay' -e 'codm' -e 'legends' -e 'pearlabyss' -e 'activision' -e 'callofduty' -e 'com.wb.goog' -e 'nexon' -e 'ea.game' -e 'konami' -e 'bandainamco' -e 'MAME' -e 'netmarble' -e 'GoogleCam' -e 'edengames' -e 'camera' -e 'snapcam' -e 'moonton' -e 'sega' -e 'gravity' -e 'hutchgames' -e 'madfingergames' -e 'squareenix' -e 'telltalegames' -e 'kakaogames' -e 'nekki' -e 'klab' -e 'telltalegames' -e 'linegames' -e 'naturalmotion' -e 'ggplay' -e 'emagroups' -e 'ganeragames' -e 'gameloft' -e 'supercell' -e 'netease' -e 'freefireth' -e 'garena' -e 'miHoYo' -e 'pubgmobile' -e 'pubg' -e 'pubgmhd' -e 'tencent' -e 'GenshinImpact' -e 'riotgames' -e 'league' -e 'wildrift' -e 'antutu' -e 'geekbench5' -e 'futuremark' | head -n 1) ]; then
+ if [ $(top -n 1 -d 1 | head -n 12 | grep -o -e 'feralinteractive' -e 'takashi' -e 'pubg' -e 'krafton' -e 'wildrift' -e 'riotgames' -e 'fansipan' -e 'netmarble' -e 'yoozoogames' -e 'damon' -e 'play' -e 'warface' -e 'joymax' -e 'deadeffect' -e 'warface' -e 'com.my' -e 'pnixgames' -e '.gamedevltd' -e 'napoleongames' -e 'datealive' -e 'mobile' -e 'indra' -e 'efun' -e 'gamedevltd' -e 'tapenjoy' -e 'warface' -e 'skynet' -e 'ppsspp' -e 'ubisoft' -e 'camouflaj' -e 'zlongame' -e 'archosaur' -e 'sea' -e 'YoStarEN' -e 'roblox' -e 'com.pixel.gun3d' -e 'cputhrottlingtest' -e 'innersloth' -e 'damonplay' -e 'codm' -e 'legends' -e 'pearlabyss' -e 'activision' -e 'callofduty' -e 'com.wb.goog' -e 'nexon' -e 'ea.game' -e 'konami' -e 'bandainamco' -e 'netease' -e 'MAME' -e 'netmarble' -e 'GoogleCam' -e 'edengames' -e 'Supercell' -e 'camera' -e 'snapcam' -e 'tencent' -e 'moonton' -e 'sega' -e 'gravity' -e 'hutchgames' -e 'madfingergames' -e 'efun' -e 'miHoYo' -e 'squareenix' -e 'telltalegames' -e 'kakaogames' -e 'nekki' -e 'klab' -e 'telltalegames' -e 'linegames' -e 'naturalmotion' -e 'ggplay' -e 'emagroups' -e 'ganeragames' -e 'gameloft' -e 'supercell' -e 'netease' -e 'freefireth' -e 'garena' | head -n 1) ]; then
     	    echo "3" > /proc/sys/vm/drop_caches
             echo "1" > /sys/devices/system/cpu/cpu0/online
             echo "1" > /sys/devices/system/cpu/cpu4/online
@@ -41,26 +48,26 @@ while true; do
                 chmod 0644 /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
                 echo "interactive" > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
                 chmod 0644 /sys/devices/system/cpu/cpu0/cpufreq/interactive/*
-                echo "198000 1401000:18000 1536000:78000" > /sys/devices/system/cpu/cpu0/cpufreq/interactive/above_hispeed_delay
+                echo "198000" > /sys/devices/system/cpu/cpu0/cpufreq/interactive/above_hispeed_delay
                 echo "1" > /sys/devices/system/cpu/cpu0/cpufreq/interactive/fast_ramp_down
                 echo "1" > /sys/devices/system/cpu/cpu0/cpufreq/interactive/use_migration_notif
                 echo "72" > /sys/devices/system/cpu/cpu0/cpufreq/interactive/go_hispeed_load
                 echo "1536000" > /sys/devices/system/cpu/cpu0/cpufreq/interactive/hispeed_freq
                 echo "78000" > /sys/devices/system/cpu/cpu0/cpufreq/interactive/max_freq_hysteresis
                 echo "18000" > /sys/devices/system/cpu/cpu0/cpufreq/interactive/min_sample_time
-                echo "56 902000:80 1113000:68 1401000:87 1536000:72 1747000:89 1843000:60" > /sys/devices/system/cpu/cpu0/cpufreq/interactive/target_loads
+                echo "56 1401000:72 1747000:89 1843000:60" > /sys/devices/system/cpu/cpu0/cpufreq/interactive/target_loads
                 echo "20000" > /sys/devices/system/cpu/cpu0/cpufreq/interactive/timer_rate
                 echo "-1" > /sys/devices/system/cpu/cpu0/cpufreq/interactive/timer_slack
                 echo "interactive" > /sys/devices/system/cpu/cpu4/cpufreq/scaling_governor
                 chmod 0644 /sys/devices/system/cpu/cpu4/cpufreq/interactive/*
-                echo "198000 1401000:18000 1536000:78000" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/above_hispeed_delay
+                echo "198000" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/above_hispeed_delay
                 echo "1" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/fast_ramp_down
                 echo "1" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/use_migration_notif
                 echo "72" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/go_hispeed_load
                 echo "1958400" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/hispeed_freq
                 echo "78000" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/max_freq_hysteresis
                 echo "18000" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/min_sample_time
-                echo "56 1401000:28 1747000:8 1958000:99" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/target_loads
+                echo "56 1401000:28 1747000:8 1958000:80" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/target_loads
                 echo "20000" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/timer_rate
                 echo "-1" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/timer_slack
             fi
@@ -74,24 +81,35 @@ while true; do
             echo "0:1113600 1:1113600 2:1113600 3:1113600 4:1401600 5:1401600 6:1401600 7:1401600" > /sys/module/msm_performance/parameters/cpu_min_freq
             echo "1113600" > /sys/devices/system/cpu/cpufreq/policy0/scaling_min_freq
             echo "1401600" > /sys/devices/system/cpu/cpufreq/policy4/scaling_min_freq
+            for perf in $(ls /sys/class/devfreq); do
+	            echo "performance" > /sys/class/devfreq/"$perf"/governor
+            done
             for ext4block in $ext4blocks; do
               if [ -e "$ext4block/inode_readahead_blks" ]; then
                 chmod 0644 $ext4block/inode_readahead_blks
                 echo "64" > $ext4block/inode_readahead_blks
               fi
             done
-            echo "deadline" > /sys/block/mmcblk0/queue/scheduler
-            echo "512" > /sys/block/mmcblk0/queue/read_ahead_kb
-            echo "0" > /sys/block/mmcblk0/queue/iostats
-            echo "0" > /sys/block/mmcblk0/queue/add_random
-            echo "2" > /sys/block/mmcblk0/queue/rq_affinity
-            echo "deadline" > /sys/block/mmcblk1/queue/scheduler
-            echo "512" > /sys/block/mmcblk1/queue/read_ahead_kb
-            echo "0" > /sys/block/mmcblk1/queue/iostats
-            echo "0" > /sys/block/mmcblk1/queue/add_random
-            echo "2" > /sys/block/mmcblk1/queue/rq_affinity
+            if grep 'deadline' $io_scheduler; then
+                echo "deadline" > /sys/block/mmcblk0/queue/scheduler
+                echo "deadline" > /sys/block/mmcblk1/queue/scheduler
+            else
+                echo "cfq" > /sys/block/mmcblk0/queue/scheduler
+                echo "cfq" > /sys/block/mmcblk1/queue/scheduler
+            fi
+            chmod 0644 /sys/block/mmcblk0/queue/iostats
+            chmod 0644 /sys/block/mmcblk1/queue/iostats
+            for file in /sys/block/*; do
+                echo "512" > $file/queue/read_ahead_kb
+                echo "2" > $file/queue/nomerges
+                echo "2" > $file/queue/rq_affinity
+                echo "0" > $file/queue/iostats
+                echo "0" > $file/queue/add_random
+                echo "0" > $file/queue/rotational
+                echo "128" > $file/queue/nr_requests
+                echo "512" > $file/bdi/read_ahead_kb
+            done
             echo "5" > /sys/class/kgsl/kgsl-3d0/devfreq/polling_interval
-            echo "msm-adreno-tz" > /sys/class/kgsl/kgsl-3d0/devfreq/governor
             if [ -e /sys/class/kgsl/kgsl-3d0/devfreq/adrenoboost ]; then
                 echo "3" > /sys/class/kgsl/kgsl-3d0/devfreq/adrenoboost
             fi
@@ -145,9 +163,9 @@ while true; do
                 echo "1" > /sys/power/pnpmgr/touch_boost
             fi
             if [ -d /dev/stune ]; then
-                echo "45" > /dev/stune/schedtune.boost
-                echo "45" > /dev/stune/top-app/schedtune.boost
-                echo "50" > /dev/stune/top-app/schedtune.sched_boost
+                echo "10" > /dev/stune/schedtune.boost
+                echo "10" > /dev/stune/top-app/schedtune.boost
+                echo "15" > /dev/stune/top-app/schedtune.sched_boost
                 echo "0" > /dev/stune/top-app/schedtune.prefer_idle
             fi
             echo "1024" > /proc/sys/kernel/random/read_wakeup_threshold
@@ -186,36 +204,18 @@ while true; do
                 echo "1" > /sys/module/lowmemorykiller/parameters/enable_adaptive_lmk
                 echo "1" > /sys/module/lowmemorykiller/parameters/lmk_fast_run
             fi
-            setprop fku.perf.profile 4
-            sysctl -w vm.compact_unevictable_allowed=0
-            sysctl -w vm.dirty_background_ratio=10
-            sysctl -w vm.dirty_ratio=80
-            sysctl -w vm.dirty_expire_centisecs=12000
-            sysctl -w vm.dirty_writeback_centisecs=0
-            sysctl -w vm.extfrag_threshold=750
-            sysctl -w vm.oom_dump_tasks=0
-            sysctl -w vm.page-cluster=0
-            sysctl -w vm.reap_mem_on_sigkill=1
-            sysctl -w vm.stat_interval=10
-            sysctl -w vm.swappiness=100
-            sysctl -w vm.vfs_cache_pressure=100
-            sysctl -w vm.watermark_scale_factor=100
+            echo "0-7" > /dev/cpuset/camera-daemon/cpus
+            echo "0-2" > /dev/cpuset/restricted/cpus
+            echo "0-3" > /dev/cpuset/system-background/cpus
+            echo "0-2" > /dev/cpuset/audio-app/cpus
+            echo "0-7" > /dev/cpuset/foreground/cpus
+            echo "0-3" > /dev/cpuset/background/cpus
+            echo "0-7" > /dev/cpuset/top-app/cpus
             resetprop ro.sys.fw.bg_apps_limit 20
             resetprop ro.vendor.qti.sys.fw.bg_apps_limit 20
             resetprop ro.vendor.qti.sys.fw.bservice_limit 20
     	    echo "1" > /proc/sys/vm/drop_caches
-            echo "performance" > /sys/class/devfreq/cc00000.qcom,vidc:venus_bus_ddr/governor
-            echo "performance" > /sys/class/devfreq/mmc0/governor
-            echo "performance" > /sys/class/devfreq/mmc1/governor
-            echo "performance" > /sys/class/devfreq/soc:devfreq_spdm_cpu/governor
-            echo "performance" > /sys/class/devfreq/soc:qcom,cpubw/governor
-            echo "performance" > /sys/class/devfreq/soc:qcom,gpubw/governor
-            echo "performance" > /sys/class/devfreq/soc:qcom,kgsl-busmon/governor
-            echo "performance" > /sys/class/devfreq/soc:qcom,memlat-cpu0/governor
-            echo "performance" > /sys/class/devfreq/soc:qcom,memlat-cpu4/governor
-            echo "performance" > /sys/class/devfreq/soc:qcom,mincpubw/governor
- else
-            sleep 5
+else
             echo "1" > /sys/devices/system/cpu/cpu0/online
             echo "1" > /sys/devices/system/cpu/cpu4/online
             chmod 0644 /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
@@ -265,7 +265,7 @@ while true; do
                 echo "1" > /sys/devices/system/cpu/cpu0/cpufreq/interactive/timer_slack
                 echo "interactive" > /sys/devices/system/cpu/cpu4/cpufreq/scaling_governor
                 chmod 0644 /sys/devices/system/cpu/cpu4/cpufreq/interactive/*
-                echo "198000 1401000:18000 1536000:78000" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/above_hispeed_delay
+                echo "198000 1401000:38000 1536000:178000" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/above_hispeed_delay
                 echo "1" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/fast_ramp_down
                 echo "1" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/use_migration_notif
                 echo "88" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/go_hispeed_load
@@ -311,12 +311,14 @@ while true; do
                   echo "0:1612800 1:1612800 2:1612800 3:1612800 4:1747200 5:1747200 6:1747200 7:1747200" > /sys/module/msm_performance/parameters/cpu_max_freq
                   echo "1612800" > /sys/devices/system/cpu/cpufreq/policy0/scaling_max_freq
                   echo "1747200" > /sys/devices/system/cpu/cpufreq/policy4/scaling_max_freq
-            fi
             echo "$setmin0" > /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
             echo "$setmin0" > /sys/devices/system/cpu/cpufreq/policy0/scaling_min_freq
             echo "$setmin4" > /sys/devices/system/cpu/cpu4/cpufreq/scaling_min_freq
             echo "$setmin4" > /sys/devices/system/cpu/cpufreq/policy4/scaling_min_freq
             echo "0:$setmin0 1:$setmin0 2:$setmin0 3:$setmin0 4:$setmin4 5:$setmin4 6:$setmin4 7:$setmin4" > /sys/module/msm_performance/parameters/cpu_min_freq
+            for perf in $(ls /sys/class/devfreq); do
+	            echo "simple_ondemand" > /sys/class/devfreq/"$perf"/governor
+            done
             for ext4block in $ext4blocks; do
               if [ -e "$ext4block/inode_readahead_blks" ]; then
                 chmod 0644 $ext4block/inode_readahead_blks
@@ -330,14 +332,18 @@ while true; do
                 echo "cfq" > /sys/block/mmcblk0/queue/scheduler
                 echo "cfq" > /sys/block/mmcblk1/queue/scheduler
             fi
-            echo "128" > /sys/block/mmcblk0/queue/read_ahead_kb
-            echo "0" > /sys/block/mmcblk0/queue/iostats
-            echo "0" > /sys/block/mmcblk0/queue/add_random
-            echo "0" > /sys/block/mmcblk0/queue/rq_affinity
-            echo "128" > /sys/block/mmcblk1/queue/read_ahead_kb
-            echo "0" > /sys/block/mmcblk1/queue/iostats
-            echo "0" > /sys/block/mmcblk1/queue/add_random
-            echo "0" > /sys/block/mmcblk1/queue/rq_affinity
+            chmod 0644 /sys/block/mmcblk0/queue/iostats
+            chmod 0644 /sys/block/mmcblk1/queue/iostats
+            for file in /sys/block/*; do
+                echo "128" > $file/queue/read_ahead_kb
+                echo "0" > $file/queue/nomerges
+                echo "0" > $file/queue/rq_affinity
+                echo "0" > $file/queue/iostats
+                echo "0" > $file/queue/add_random
+                echo "0" > $file/queue/rotational
+                echo "128" > $file/queue/nr_requests
+                echo "128" > $file/bdi/read_ahead_kb
+            done
             echo "10" > /sys/class/kgsl/kgsl-3d0/devfreq/polling_interval
             echo "msm-adreno-tz" > /sys/class/kgsl/kgsl-3d0/devfreq/governor
             if [ -e /sys/class/kgsl/kgsl-3d0/devfreq/adrenoboost ]; then
@@ -434,32 +440,15 @@ while true; do
                 echo "0" > /sys/module/lowmemorykiller/parameters/enable_adaptive_lmk
                 echo "0" > /sys/module/lowmemorykiller/parameters/lmk_fast_run
             fi
-            setprop fku.perf.profile 3
-            sysctl -w vm.compact_unevictable_allowed=0
-            sysctl -w vm.dirty_background_ratio=10
-            sysctl -w vm.dirty_ratio=30
-            sysctl -w vm.dirty_expire_centisecs=1000
-            sysctl -w vm.dirty_writeback_centisecs=0
-            sysctl -w vm.extfrag_threshold=750
-            sysctl -w vm.oom_dump_tasks=0
-            sysctl -w vm.page-cluster=0
-            sysctl -w vm.reap_mem_on_sigkill=1
-            sysctl -w vm.stat_interval=10
-            sysctl -w vm.swappiness=80
-            sysctl -w vm.vfs_cache_pressure=200
-            sysctl -w vm.watermark_scale_factor=100
+            echo "0-3" > /dev/cpuset/camera-daemon/cpus
+            echo "0-2" > /dev/cpuset/restricted/cpus
+            echo "0-2" > /dev/cpuset/system-background/cpus
+            echo "0-1" > /dev/cpuset/audio-app/cpus
+            echo "0-3" > /dev/cpuset/foreground/cpus
+            echo "0" > /dev/cpuset/background/cpus
+            echo "0-3,6-7" > /dev/cpuset/top-app/cpus
             resetprop ro.sys.fw.bg_apps_limit 160
             resetprop ro.vendor.qti.sys.fw.bg_apps_limit 160
             resetprop ro.vendor.qti.sys.fw.bservice_limit 160
-            echo "venus-ddr-gov" > /sys/class/devfreq/cc00000.qcom,vidc:venus_bus_ddr/governor
-            echo "simple_ondemand" > /sys/class/devfreq/mmc0/governor
-            echo "simple_ondemand" > /sys/class/devfreq/mmc1/governor
-            echo "spdm_bw_hyp" > /sys/class/devfreq/soc:devfreq_spdm_cpu/governor
-            echo "bw_hwmon" > /sys/class/devfreq/soc:qcom,cpubw/governor
-            echo "bw_vbif" > /sys/class/devfreq/soc:qcom,gpubw/governor
-            echo "gpubw_mon" > /sys/class/devfreq/soc:qcom,kgsl-busmon/governor
-            echo "mem_latency" > /sys/class/devfreq/soc:qcom,memlat-cpu0/governor
-            echo "mem_latency" > /sys/class/devfreq/soc:qcom,memlat-cpu4/governor
-            echo "cpufreq" > /sys/class/devfreq/soc:qcom,mincpubw/governor
- fi;
+fi;
 done
