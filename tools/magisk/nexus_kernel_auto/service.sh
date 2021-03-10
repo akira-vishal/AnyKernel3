@@ -5,4 +5,4 @@
 #========================================
 MODDIR=${0%/*}
 sleep 30
-$MODDIR/neXus.sh 2>/dev/null
+$MODDIR/neXus 2>/dev/null
