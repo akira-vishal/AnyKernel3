@@ -1,0 +1,7 @@
+id=nexus
+name=neXus
+version=X4.0
+versionCode=140
+author=akira-vishal
+description=neXus Kernel Auto Configuration For User Experience Between Battery And Performance with SDM660 Thermals and EAS PerfHAL.
+support=https://github.com/akira-vishal/AnyKernel3.git

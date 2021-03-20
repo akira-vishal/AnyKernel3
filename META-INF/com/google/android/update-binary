@@ -46,13 +46,14 @@ insert_line() {
 }
 
 ui_print "××××××××××××××××××××××××××××××××××××××××××××××"
-ui_print "             _  _______  ____  ______         "
-ui_print "            / |/ / __/ |/_/ / / / __/           "
-ui_print "           /    / _/_>  </ /_/ /\ \            "
-ui_print "          /_/|_/___/_/|_|\____/___/            "
-ui_print "                                                 "
+ui_print "                         _  __                        "
+ui_print "              ____  ___ | |/ /_  _______               "
+ui_print "             / __ \/ _ \|   / / / / ___/              "
+ui_print "            / / / /  __/   / /_/ (__  )               "
+ui_print "           /_/ /_/\___/_/|_\__,_/____/                 "
+ui_print "                                                     "
 ui_print "××××××××××××××××××××××××××××××××××××××××××××××"
-ui_print "×       NEXUS KERNEL by @akira-vishal        ×"
+ui_print "×        neXus KERNEL by @akira-vishal        ×"
 ui_print "××××××××××××××××××××××××××××××××××××××××××××××"
 ui_print " "
 ui_print "× Initializing parameters and properties"
@@ -457,30 +458,36 @@ fi;
 if [ -d /data/adb/magisk ]; then
     ui_print "× Installing Magisk Module";
     $BB mount -o rw,remount -t auto /data 2>/dev/null;
-    auto=/data/adb/modules/nexus_kernel_auto
-    engine=/data/adb/modules/nexus_kernel_engine
-    $BB rm -rf $auto
-    $BB rm -rf $engine
-    mkdir -p $auto
-    mkdir -p $engine
-    cp -f $AKHOME/tools/magisk/nexus_kernel_auto/* $auto;
-    cp -f $AKHOME/tools/magisk/nexus_kernel_engine/* $engine;
-    chmod 755 $auto/service.sh
-    chmod 755 $auto/neXus
-    chmod 755 $auto/post-fs-data.sh
-    chmod 755 $engine/post-fs-data.sh
+    MODULE=/data/adb/modules/nexus
+    $BB rm -rf $MODULE
+    mkdir -p $MODULE
+    $BB cp -f $AKHOME/tools/magisk/nexus/* $MODULE;
+    chmod 644 $MODULE/system/*
+    chmod 644 $MODULE/module.prop
+    chmod 755 $MODULE/service.sh
+    chmod 755 $MODULE/neXus
+    chmod 755 $MODULE/post-fs-data.sh
+    chmod 755 $MODULE/uninstall.sh
 else
     ui_print "× Installing Kernel Mods";
     $BB mount -o rw,remount -t auto /vendor 2>/dev/null;
     $BB rm -rf /vendor/etc/init/hw/init.neXus.rc;
     $BB rm -rf /vendor/etc/thermal-engin*;
     insert_line /vendor/etc/init/hw/init.qcom.rc "init.neXus.rc" after "import /vendor/etc/init/hw/init.qcom.usb.rc" "import /vendor/etc/init/hw/init.neXus.rc";
-    $BB cp -f $AKHOME/tools/recovery/init.neXus.rc /vendor/etc/init/hw/init.nexus.rc;
+    $BB cp -f $AKHOME/tools/recovery/init.neXus.rc /vendor/etc/init/hw/init.neXus.rc;
+    $BB cp -f $AKHOME/tools/recovery/lm /vendor/etc/lm;
+    $BB cp -f $AKHOME/tools/recovery/perf /vendor/etc/perf;
+    $BB cp -f $AKHOME/tools/recovery/msm_irqbalance.conf /vendor/etc/msm_irqbalance.conf;
+    $BB cp -f $AKHOME/tools/recovery/powerhint.json /vendor/etc/powerhint.json;
     $BB cp -f $AKHOME/tools/recovery/thermal-engine.conf /vendor/etc/thermal-engine.conf;
     $BB cp -f $AKHOME/tools/recovery/thermal-engine-camera.conf /vendor/etc/thermal-engine-camera.conf;
     $BB cp -f $AKHOME/tools/recovery/thermal-engine-map.conf /vendor/etc/thermal-engine-map.conf;
     $BB cp -f $AKHOME/tools/recovery/thermal-engine-normal.conf /vendor/etc/thermal-engine-normal.conf;
     $BB chmod 644 /vendor/etc/init/hw/init.nexus.rc
+    $BB chmod 644 /vendor/etc/lm/*
+    $BB chmod 644 /vendor/etc/perf/*
+    $BB chmod 644 /vendor/etc/msm_irqbalance.conf
+    $BB chmod 644 /vendor/etc/powerhint.json
     $BB chmod 644 /vendor/etc/thermal-engine.conf
     $BB chmod 644 /vendor/etc/thermal-engine-camera.conf
     $BB chmod 644 /vendor/etc/thermal-engine-map.conf
@@ -497,7 +504,7 @@ if [ "$(file_getprop anykernel.sh do.cleanup)" == 1 ]; then
 fi;
 
 ui_print "× Successfully flashed kernel!";
-ui_print "× Thank you for using NEXUS KERNEL!";
+ui_print "× Thank you for using neXus KERNEL!";
 ui_print "× Powered by AnyKernel3 by @osm0sis";
 ui_print " "
 ui_print "×××××××××××××××××××××××××××××××××××××××××××××××"

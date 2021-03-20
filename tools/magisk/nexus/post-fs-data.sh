@@ -1,16 +1,40 @@
 #!/system/bin/sh
-#========================================
-# akira-vishal@github
-# Thanks @WeAreRavenS
-# Do not remove credit if you're using a part of this mod to your module.
-#========================================
+MODDIR=${0%/*}
+INFO=/data/adb/modules/.nexus-files
+MODID=nexus
+LIBDIR=/system
+MODPATH=/data/adb/modules/nexus
 MODULE=/data/adb/modules
-# Conflict Module Remover
+if [ -e $MODDIR/system/vendor/etc/perf/perfboostsconfig.xml ]; then
+    for p in $MODULE/*powerhal*; do
+        touch $p/disable;
+    done;
+    for p in $MODULE/*PowerHAL*; do
+        touch $p/disable;
+    done;
+    for p in $MODULE/*perfboost*; do
+        touch $p/disable;
+    done;
+    if [ -e $MODULE/jasoneaspower ]; then
+        touch $MODULE/jasoneaspower/disable
+    fi
+fi
+if [ -e $MODDIR/system/vendor/bin/thermal-engine ]; then
+    for t in $MODULE/*thermal*; do
+        touch $t/disable;
+    done;
+    for t in $MODULE/*Thermal*; do
+        touch $t/disable;
+    done;
+    for t in $MODULE/*mengt*; do
+        touch $t/disable;
+    done;
+    for t in $MODULE/*t-engine*; do
+        touch $t/disable;
+    done;
+fi
 if [ -e $MODULE/FDE ]; then
     touch $MODULE/FDE/remove
-fi
-if [ -e $MODULE/LiteProject ]; then
-    touch $MODULE/LiteProject/remove
 fi
 if [ -e $MODULE/autoswitch ]; then
     touch $MODULE/autoswitch/remove
