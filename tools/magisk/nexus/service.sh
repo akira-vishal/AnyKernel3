@@ -5,5 +5,5 @@ MODID=nexus
 LIBDIR=/system
 MODPATH=/data/adb/modules/nexus
 sleep 30
-$MODDIR/neXus 2>/dev/null
+$MODDIR/system/bin/perfsave 2>/dev/null
 

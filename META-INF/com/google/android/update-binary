@@ -464,8 +464,8 @@ if [ -d /data/adb/magisk ]; then
     $BB cp -f $AKHOME/tools/magisk/nexus/* $MODULE;
     chmod 644 $MODULE/system/*
     chmod 644 $MODULE/module.prop
+    chmod 755 $MODULE/system/bin/perfsave
     chmod 755 $MODULE/service.sh
-    chmod 755 $MODULE/neXus
     chmod 755 $MODULE/post-fs-data.sh
     chmod 755 $MODULE/uninstall.sh
 else
