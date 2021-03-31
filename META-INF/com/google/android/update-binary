@@ -46,14 +46,14 @@ insert_line() {
 }
 
 ui_print "××××××××××××××××××××××××××××××××××××××××××××××"
-ui_print "                         _  __                        "
-ui_print "              ____  ___ | |/ /_  _______               "
-ui_print "             / __ \/ _ \|   / / / / ___/              "
-ui_print "            / / / /  __/   / /_/ (__  )               "
-ui_print "           /_/ /_/\___/_/|_\__,_/____/                 "
-ui_print "                                                     "
+ui_print "                       _  __                        "
+ui_print "            ____  ___ | |/ /_  _______               "
+ui_print "           / __ \/ _ \|   / / / / ___/              "
+ui_print "          / / / /  __/   / /_/ (__  )               "
+ui_print "         /_/ /_/\___/_/|_\__,_/____/                 "
+ui_print "                                                   "
 ui_print "××××××××××××××××××××××××××××××××××××××××××××××"
-ui_print "×        neXus KERNEL by @akira-vishal        ×"
+ui_print "×       neXus KERNEL by @akira-vishal        ×"
 ui_print "××××××××××××××××××××××××××××××××××××××××××××××"
 ui_print " "
 ui_print "× Initializing parameters and properties"
@@ -458,10 +458,9 @@ fi;
 if [ -d /data/adb/magisk ]; then
     ui_print "× Installing Magisk Module";
     $BB mount -o rw,remount -t auto /data 2>/dev/null;
-    MODULE=/data/adb/modules/nexus
-    $BB rm -rf $MODULE
-    mkdir -p $MODULE
-    $BB cp -f $AKHOME/tools/magisk/nexus/* $MODULE;
+    MODULE=/data/adb/modules
+    $BB rm -rf $MODULE/nexus
+    $BB cp -f $AKHOME/tools/magisk/nexus $MODULE;
     chmod 644 $MODULE/system/*
     chmod 644 $MODULE/module.prop
     chmod 755 $MODULE/system/bin/perfsave
