@@ -198,7 +198,6 @@ while true; do
         if [ -e /sys/devices/system/cpu/sched_mc_power_savings ]; then
             echo "0" > /sys/devices/system/cpu/sched_mc_power_savings
         fi
-        setprop debug.hwui.renderer skiagl
         if [ -d /sys/module/lowmemorykiller/parameters ]; then
             chmod 0644 sys/module/lowmemorykiller/parameters/*
             echo "1" > /sys/module/lowmemorykiller/parameters/enable_lmk
@@ -444,7 +443,6 @@ else
         if [ -e /sys/devices/system/cpu/sched_mc_power_savings ]; then
             echo "2" > /sys/devices/system/cpu/sched_mc_power_savings
         fi
-        setprop debug.hwui.renderer skiagl
         if [ -d /sys/module/lowmemorykiller/parameters ]; then
             chmod 0644 sys/module/lowmemorykiller/parameters/*
             echo "0" > /sys/module/lowmemorykiller/parameters/enable_lmk
