@@ -1,7 +1,0 @@
-id=nexus
-name=neXus
-version=X4.5
-versionCode=145
-author=akira-vishal
-description=neXus Kernel Auto Configuration For User Experience Between Powersave And Performance with SDM660 Thermals and EAS PerfHAL.
-support=https://github.com/akira-vishal/AnyKernel3.git
