@@ -46,14 +46,13 @@ insert_line() {
 }
 
 ui_print "××××××××××××××××××××××××××××××××××××××××××××××"
-ui_print "                       _  __                        "
-ui_print "            ____  ___ | |/ /_  _______               "
-ui_print "           / __ \/ _ \|   / / / / ___/              "
-ui_print "          / / / /  __/   / /_/ (__  )               "
-ui_print "         /_/ /_/\___/_/|_\__,_/____/                 "
-ui_print "                                                   "
+ui_print "               ____________  ________                 "
+ui_print "              /  _/ ___/ _ \/  _/ __/                "
+ui_print "             _/ // (_ / , _// /_\ \                   "
+ui_print "            /___/\___/_/|_/___/___/                   "
+ui_print "                                                     "
 ui_print "××××××××××××××××××××××××××××××××××××××××××××××"
-ui_print "×       neXus KERNEL by @akira-vishal        ×"
+ui_print "×        IGris KERNEL by @akira-vishal        ×"
 ui_print "××××××××××××××××××××××××××××××××××××××××××××××"
 ui_print " "
 ui_print "× Initializing parameters and properties"
@@ -464,7 +463,7 @@ if [ "$(file_getprop anykernel.sh do.cleanup)" == 1 ]; then
 fi;
 
 ui_print "× Successfully flashed kernel!";
-ui_print "× Thank you for using neXus KERNEL!";
+ui_print "× Thank you for using IGris KERNEL!";
 ui_print "× Powered by AnyKernel3 by @osm0sis";
 ui_print " "
 ui_print "×××××××××××××××××××××××××××××××××××××××××××××××"
