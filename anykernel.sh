@@ -4,7 +4,7 @@
 ## AnyKernel setup
 # begin properties
 properties() { '
-kernel.string=TestKernel by xawlw
+kernel.string=Etherious by xawlw
 do.devicecheck=1
 do.modules=0
 do.systemless=1
